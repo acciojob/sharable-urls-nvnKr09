@@ -1,12 +1,13 @@
-// your code here
-const form = document.getElementById("myForm");
-        const urlElement = document.getElementById("url");
-
-        form.addEventListener("submit", (e) => {
-            e.preventDefault();
-            const name = document.getElementById("name").value;
-            const year = document.getElementById("year").value;
-
-            // Build the URL with a query string
-           urlElement.textContent = `https://localhost:8080/?name=${name}&year=${year}`;
-        });
+function generateURL(){
+    const name = document.getElementById('name').value;
+    const year = document.getElementById('year').value;
+    let url = 'https://localhost:8080/';
+    if(name.length + year.length > 0) url += '?';
+    if(name!='') url += 'name=' + name;
+    if(year!=''){
+      if(name!='') url += '&'
+      url += 'year=' + year;
+    }
+    document.getElementById('url').innerHTML = url;
+  }
+  document.getElementById('button').addEventListener('click', generateURL);
